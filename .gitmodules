@@ -1,0 +1,12 @@
+[submodule "prebuilts/tools"]
+	path = prebuilts/tools
+	url = https://android.googlesource.com/platform/prebuilts/tools
+[submodule "prebuilts/studio/jdk"]
+	path = prebuilts/studio/jdk
+	url = https://android.googlesource.com/platform/prebuilts/studio/jdk
+[submodule "tools/base"]
+	path = tools/base
+	url = https://android.googlesource.com/platform/tools/base
+[submodule "tools/adt/idea"]
+	path = tools/adt/idea
+	url = https://android.googlesource.com/platform/tools/adt/idea

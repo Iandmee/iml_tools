@@ -1,4 +1,18 @@
+#workspace(name="root_workspace")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+#load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "rules_python",
+    sha256 = "d70cd72a7a4880f0000a6346253414825c19cdd40a28289bdf67b8e6480edff8",
+    strip_prefix = "rules_python-0.28.0",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/0.28.0/rules_python-0.28.0.tar.gz",
+)
+
+load("@rules_python//python:repositories.bzl", "py_repositories")
+
+py_repositories()
 
 http_archive(
     name = "bazel_skylib",
@@ -7,6 +21,15 @@ http_archive(
         "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
         "https://github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
     ],
+)
+
+http_archive(
+    name = "android_studio",
+    sha256 = "1fcc05843938f8298d70b336d7cda0e3ebb2f44c1da6fa5b1071a2eb368f298c",
+    urls = [
+        "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.1.1.8/android-studio-2023.1.1.8-linux.tar.gz",
+    ],
+    build_file = "@//prebuilts/studio/intellij-sdk:BUILD.main"
 )
 
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
@@ -76,4 +99,3 @@ new_local_repository(
     build_file = "tools/base/bazel/maven/BUILD.maven",
     path = "prebuilts/tools/common/m2",
 )
-

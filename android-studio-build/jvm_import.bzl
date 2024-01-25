@@ -65,7 +65,7 @@ Args:
         "_modify_jar": attr.label(
             executable = True,
             cfg = "exec",
-            default = Label("@//tools/base/bazel:modify_jar_manifest"),
+            default = Label("@iml_tools//tools/base/bazel:modify_jar_manifest"),
         ),
     },
     implementation = _jvm_import,

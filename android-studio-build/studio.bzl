@@ -1,11 +1,11 @@
-load("@//tools/base/bazel:bazel.bzl", "ImlModuleInfo", "iml_test")
-load("@//tools/base/bazel:merge_archives.bzl", "run_singlejar")
-load("@//tools/base/bazel:functions.bzl", "create_option_file")
-load("@//tools/base/bazel:utils.bzl", "dir_archive")
-load("@//tools/base/bazel:jvm_import.bzl", "jvm_import")
-load("@//tools/base/bazel:expand_template.bzl", "expand_template_ex")
+load("@iml_tools//tools/base/bazel:bazel.bzl", "ImlModuleInfo", "iml_test")
+load("@iml_tools//tools/base/bazel:merge_archives.bzl", "run_singlejar")
+load("@iml_tools//tools/base/bazel:functions.bzl", "create_option_file")
+load("@iml_tools//tools/base/bazel:utils.bzl", "dir_archive")
+load("@iml_tools//tools/base/bazel:jvm_import.bzl", "jvm_import")
+load("@iml_tools//tools/base/bazel:expand_template.bzl", "expand_template_ex")
 load("@bazel_skylib//rules:common_settings.bzl", "BuildSettingInfo")
-load("@//tools/adt/idea/studio/rules:app-icon.bzl", "AppIconInfo", "replace_app_icon")
+load("@iml_tools//tools/adt/idea/studio/rules:app-icon.bzl", "AppIconInfo", "replace_app_icon")
 
 PluginInfo = provider(
     doc = "Info for IntelliJ plugins, including those built by the studio_plugin rule",
@@ -282,7 +282,7 @@ _studio_plugin = rule(
             executable = True,
         ),
         "_check_plugin": attr.label(
-            default = Label("@//tools/adt/idea/studio:check_plugin"),
+            default = Label("@iml_tools//tools/adt/idea/studio:check_plugin"),
             cfg = "host",
             executable = True,
         ),
@@ -830,12 +830,12 @@ _android_studio = rule(
             executable = True,
         ),
         "_stamper": attr.label(
-            default = Label("@//tools/adt/idea/studio:stamper"),
+            default = Label("@iml_tools//tools/adt/idea/studio:stamper"),
             cfg = "exec",
             executable = True,
         ),
         "_generate_build_metadata": attr.label(
-            default = Label("@//tools/adt/idea/studio:generate_build_metadata"),
+            default = Label("@iml_tools//tools/adt/idea/studio:generate_build_metadata"),
             cfg = "exec",
             executable = True,
         ),
@@ -845,17 +845,17 @@ _android_studio = rule(
             executable = True,
         ),
         "_lnzipper": attr.label(
-            default = Label("@//tools/base/bazel/lnzipper:lnzipper"),
+            default = Label("@iml_tools//tools/base/bazel/lnzipper:lnzipper"),
             cfg = "exec",
             executable = True,
         ),
         "_expander": attr.label(
-            default = Label("@//tools/base/bazel/expander"),
+            default = Label("@iml_tools//tools/base/bazel/expander"),
             cfg = "host",
             executable = True,
         ),
         "_replace_exe_icon": attr.label(
-            default = Label("@//tools/vendor/google/windows-exe-patcher:replace-exe-icon"),
+            default = Label("@iml_tools//tools/vendor/google/windows-exe-patcher:replace-exe-icon"),
             cfg = "exec",
             executable = True,
         ),
@@ -925,8 +925,8 @@ def android_studio(
         compress = is_release(),
         host_platform_name = select({
             "@platforms//os:linux": LINUX.name,
-            "@//tools/base/bazel/platforms:macos-x86_64": MAC.name,
-            "@//tools/base/bazel/platforms:macos-arm64": MAC_ARM.name,
+            "@iml_tools//tools/base/bazel/platforms:macos-x86_64": MAC.name,
+            "@iml_tools//tools/base/bazel/platforms:macos-arm64": MAC_ARM.name,
             "@platforms//os:windows": WIN.name,
             "//conditions:default": "",
         }),
@@ -975,7 +975,7 @@ _intellij_plugin_import = rule(
         "exports": attr.label_list(providers = [JavaInfo], mandatory = True),
         "compress": attr.bool(),
         "_check_plugin": attr.label(
-            default = Label("@//tools/adt/idea/studio:check_plugin"),
+            default = Label("@iml_tools//tools/adt/idea/studio:check_plugin"),
             cfg = "host",
             executable = True,
         ),
@@ -1092,9 +1092,9 @@ def intellij_platform(
     jvm_import(
         name = name + "_jars",
         jars = select({
-            "@//tools/base/bazel:windows": [src + "/windows/android-studio" + jar for jar in spec.jars + spec.jars_windows],
-            "@//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents" + jar for jar in spec.jars + spec.jars_darwin],
-            "@//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents" + jar for jar in spec.jars + spec.jars_darwin_aarch64],
+            "@iml_tools//tools/base/bazel:windows": [src + "/windows/android-studio" + jar for jar in spec.jars + spec.jars_windows],
+            "@iml_tools//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents" + jar for jar in spec.jars + spec.jars_darwin],
+            "@iml_tools//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents" + jar for jar in spec.jars + spec.jars_darwin_aarch64],
             "//conditions:default": [src + "/linux/android-studio" + jar for jar in spec.jars + spec.jars_linux],
         }),
     )
@@ -1112,15 +1112,15 @@ def intellij_platform(
         # Local linux sandbox does not support spaces in names, so we exclude some files
         # Otherwise we get: "link or target filename contains space"
         data = select({
-            "@//tools/base/bazel:windows": native.glob(
+            "@iml_tools//tools/base/bazel:windows": native.glob(
                 include = [src + "/windows/android-studio/**"],
                 exclude = [src + "/windows/android-studio/plugins/textmate/lib/bundles/**"],
             ),
-            "@//tools/base/bazel:darwin": native.glob(
+            "@iml_tools//tools/base/bazel:darwin": native.glob(
                 include = [src + "/darwin/android-studio/**"],
                 exclude = [src + "/darwin/android-studio/Contents/plugins/textmate/lib/bundles/**"],
             ),
-            "@//tools/base/bazel:darwin_arm64": native.glob(
+            "@iml_tools//tools/base/bazel:darwin_arm64": native.glob(
                 include = [src + "/darwin_aarch64/android-studio/**"],
                 exclude = [src + "/darwin_aarch64/android-studio/Contents/plugins/textmate/lib/bundles/**"],
             ),
@@ -1139,7 +1139,7 @@ def intellij_platform(
     }
     native.py_test(
         name = name + "_version_test",
-        srcs = ["@//tools/adt/idea/studio:sdk_version_test.py"],
+        srcs = ["@iml_tools//tools/adt/idea/studio:sdk_version_test.py"],
         main = "sdk_version_test.py",
         tags = ["no_test_windows", "no_test_mac"],
         data = resource_jars.values(),
@@ -1150,16 +1150,16 @@ def intellij_platform(
                 [k + "=" + "$(execpath :" + v + ")" for k, v in resource_jars.items()],
             ),
         },
-        deps = ["@//tools/adt/idea/studio:intellij"],
+        deps = ["@iml_tools//tools/adt/idea/studio:intellij"],
     )
 
     # Expose lib/resources.jar as a separate target
     native.java_import(
         name = name + "-resources-jar",
         jars = select({
-            "@//tools/base/bazel:windows": [src + "/windows/android-studio/lib/resources.jar"],
-            "@//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/lib/resources.jar"],
-            "@//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/lib/resources.jar"],
+            "@iml_tools//tools/base/bazel:windows": [src + "/windows/android-studio/lib/resources.jar"],
+            "@iml_tools//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/lib/resources.jar"],
+            "@iml_tools//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/lib/resources.jar"],
             "//conditions:default": [src + "/linux/android-studio/lib/resources.jar"],
         }),
         visibility = ["//visibility:public"],
@@ -1169,9 +1169,9 @@ def intellij_platform(
     native.filegroup(
         name = name + "-build-txt",
         srcs = select({
-            "@//tools/base/bazel:windows": [src + "/windows/android-studio/build.txt"],
-            "@//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/Resources/build.txt"],
-            "@//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/Resources/build.txt"],
+            "@iml_tools//tools/base/bazel:windows": [src + "/windows/android-studio/build.txt"],
+            "@iml_tools//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/Resources/build.txt"],
+            "@iml_tools//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/Resources/build.txt"],
             "//conditions:default": [src + "/linux/android-studio/build.txt"],
         }),
         visibility = ["//visibility:public"],
@@ -1181,9 +1181,9 @@ def intellij_platform(
     native.filegroup(
         name = name + "-product-info",
         srcs = select({
-            "@//tools/base/bazel:windows": [src + "/windows/android-studio/product-info.json"],
-            "@//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/Resources/product-info.json"],
-            "@//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/Resources/product-info.json"],
+            "@iml_tools//tools/base/bazel:windows": [src + "/windows/android-studio/product-info.json"],
+            "@iml_tools//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/Resources/product-info.json"],
+            "@iml_tools//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/Resources/product-info.json"],
             "//conditions:default": [src + "/linux/android-studio/product-info.json"],
         }),
         visibility = ["//visibility:public"],
@@ -1193,9 +1193,9 @@ def intellij_platform(
     native.filegroup(
         name = name + "-vm-options",
         srcs = select({
-            "@//tools/base/bazel:windows": [src + "/windows/android-studio/bin/studio64.exe.vmoptions"],
-            "@//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/bin/studio.vmoptions"],
-            "@//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/bin/studio.vmoptions"],
+            "@iml_tools//tools/base/bazel:windows": [src + "/windows/android-studio/bin/studio64.exe.vmoptions"],
+            "@iml_tools//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/bin/studio.vmoptions"],
+            "@iml_tools//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/bin/studio.vmoptions"],
             "//conditions:default": [src + "/linux/android-studio/bin/studio64.vmoptions"],
         }),
         visibility = ["//visibility:public"],
@@ -1242,9 +1242,9 @@ def intellij_platform(
     jvm_import(
         name = name + "-test-framework",
         jars = select({
-            "@//tools/base/bazel:windows": [src + "/windows/android-studio/lib/testFramework.jar"],
-            "@//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/lib/testFramework.jar"],
-            "@//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/lib/testFramework.jar"],
+            "@iml_tools//tools/base/bazel:windows": [src + "/windows/android-studio/lib/testFramework.jar"],
+            "@iml_tools//tools/base/bazel:darwin": [src + "/darwin/android-studio/Contents/lib/testFramework.jar"],
+            "@iml_tools//tools/base/bazel:darwin_arm64": [src + "/darwin_aarch64/android-studio/Contents/lib/testFramework.jar"],
             "//conditions:default": [src + "/linux/android-studio/lib/testFramework.jar"],
         }),
         visibility = ["//visibility:public"],
@@ -1264,9 +1264,9 @@ def _gen_plugin_jars_import_target(name, src, spec, plugin, jars):
     jvm_import(
         name = name,
         jars = select({
-            "@//tools/base/bazel:windows": jars_windows,
-            "@//tools/base/bazel:darwin": jars_darwin,
-            "@//tools/base/bazel:darwin_arm64": jars_darwin_aarch64,
+            "@iml_tools//tools/base/bazel:windows": jars_windows,
+            "@iml_tools//tools/base/bazel:darwin": jars_darwin,
+            "@iml_tools//tools/base/bazel:darwin_arm64": jars_darwin_aarch64,
             "//conditions:default": jars_linux,
         }),
     )
@@ -1278,10 +1278,10 @@ def iml_studio_test(
     iml_test(
         name = name,
         data = select({
-            "@platforms//os:linux": ["@//tools/adt/idea/studio:android-studio.linux.zip"],
-            "@//tools/base/bazel/platforms:macos-x86_64": ["@//tools/adt/idea/studio:android-studio.mac.zip"],
-            "@//tools/base/bazel/platforms:macos-arm64": ["@//tools/adt/idea/studio:android-studio.mac_arm.zip"],
-            "@platforms//os:windows": ["@//tools/adt/idea/studio:android-studio.win.zip"],
+            "@platforms//os:linux": ["@iml_tools//tools/adt/idea/studio:android-studio.linux.zip"],
+            "@iml_tools//tools/base/bazel/platforms:macos-x86_64": ["@iml_tools//tools/adt/idea/studio:android-studio.mac.zip"],
+            "@iml_tools//tools/base/bazel/platforms:macos-arm64": ["@iml_tools//tools/adt/idea/studio:android-studio.mac_arm.zip"],
+            "@platforms//os:windows": ["@iml_tools//tools/adt/idea/studio:android-studio.win.zip"],
             "//conditions:default": [],
         }) + data,
         **kwargs
@@ -1289,6 +1289,6 @@ def iml_studio_test(
 
 def is_release():
     return select({
-        "@//tools/base/bazel:release": True,
+        "@iml_tools//tools/base/bazel:release": True,
         "@//conditions:default": False,
     })

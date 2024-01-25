@@ -1,5 +1,5 @@
-load("@//android-studio-build:jvm_import.bzl", "jvm_import")
-load("@//android-studio-build:studio.bzl", "intellij_plugin_import")
+load("@iml_tools//android-studio-build:jvm_import.bzl", "jvm_import")
+load("@iml_tools//android-studio-build:studio.bzl", "intellij_plugin_import")
 package(default_visibility = ["//visibility:public"])
 
 intellij_plugin_import(

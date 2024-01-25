@@ -1,4 +1,4 @@
-#workspace(name="root_workspace")
+workspace(name="iml_tools")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 #load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -94,8 +94,8 @@ http_archive(
 #    ],
 #)
 
-new_local_repository(
-    name = "maven",
-    build_file = "tools/base/bazel/maven/BUILD.maven",
-    path = "prebuilts/tools/common/m2",
-)
+#new_local_repository(
+#    name = "maven",
+#    build_file = "tools/base/bazel/maven/BUILD.maven",
+#    path = "prebuilts/tools/common/m2",
+#)

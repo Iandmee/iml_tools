@@ -94,8 +94,8 @@ http_archive(
 #    ],
 #)
 
-#new_local_repository(
-#    name = "maven",
-#    build_file = "tools/base/bazel/maven/BUILD.maven",
-#    path = "prebuilts/tools/common/m2",
-#)
+new_local_repository(
+    name = "maven",
+    build_file = "tools/base/bazel/maven/BUILD.maven",
+    path = "prebuilts/tools/common/m2",
+)

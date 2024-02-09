@@ -10,3 +10,6 @@
 [submodule "tools/adt/idea"]
 	path = tools/adt/idea
 	url = https://android.googlesource.com/platform/tools/adt/idea
+[submodule "intellij-community"]
+	path = intellij-community
+	url = https://github.com/Iandmee/intellij-community.git

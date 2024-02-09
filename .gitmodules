@@ -6,7 +6,7 @@
 	url = https://android.googlesource.com/platform/prebuilts/studio/jdk
 [submodule "tools/base"]
 	path = tools/base
-	url = https://android.googlesource.com/platform/tools/base
+	url = https://github.com/Iandmee/base_tools.git
 [submodule "tools/adt/idea"]
 	path = tools/adt/idea
 	url = https://android.googlesource.com/platform/tools/adt/idea

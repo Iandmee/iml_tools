@@ -1,0 +1,34 @@
+From cfcbedc887b1e7bf701f2f9f154a07b7603cb059 Mon Sep 17 00:00:00 2001
+From: Nikita Proskurnikov <nikita.proskurnikov@ejetbrains.com>
+Date: Mon, 18 Mar 2024 14:34:51 +0100
+Subject: [PATCH] modify compilation flags
+
+---
+ include/config/copts.bzl | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/config/copts.bzl b/include/config/copts.bzl
+index c530e19576..a3db9bd9a6 100644
+--- a/include/config/copts.bzl
++++ b/include/config/copts.bzl
+@@ -54,7 +54,7 @@ OPT_LEVEL = select({
+     ],
+     "//bazel/common_config_settings:fast_build": [
+         "--optimize=0",
+-        "-gline-tables-only",
++        #"-gline-tables-only",
+     ],
+ })
+ 
+@@ -156,7 +156,7 @@ WARNINGS = [
+     "//conditions:default": [],
+ })
+ 
+-DEFAULT_COPTS = CORE_COPTS + OPT_LEVEL + WARNINGS
++DEFAULT_COPTS = CORE_COPTS + OPT_LEVEL #+ WARNINGS
+ 
+ OBJC_COPTS = [
+     "-Wno-direct-ivar-access",
+-- 
+2.34.1
+

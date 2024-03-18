@@ -1,0 +1,68 @@
+From 01101f66c1bdb52d3fa1640ab5d09372aba7bb80 Mon Sep 17 00:00:00 2001
+From: Nikita Proskurnikov <nikita.proskurnikov@ejetbrains.com>
+Date: Mon, 29 Jan 2024 13:37:48 +0100
+Subject: [PATCH] temp
+
+---
+ adt-testutils/intellij.android.adt.testutils.iml            | 4 ++--
+ gradle-dsl/intellij.android.gradle.dsl.testutils.iml        | 4 ++--
+ .../intellij.android.projectSystem.gradle.tests.iml         | 6 +++---
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/adt-testutils/intellij.android.adt.testutils.iml b/adt-testutils/intellij.android.adt.testutils.iml
+index 38dc6685eb7..3b4f57e1e73 100644
+--- a/adt-testutils/intellij.android.adt.testutils.iml
++++ b/adt-testutils/intellij.android.adt.testutils.iml
+@@ -10,8 +10,8 @@
+     <orderEntry type="module" module-name="android.sdktools.testutils" scope="TEST" />
+     <orderEntry type="module" module-name="android.sdktools.repository" scope="TEST" />
+     <orderEntry type="library" scope="TEST" name="truth" level="project" />
+-    <orderEntry type="module" module-name="intellij.android.design-plugin.descriptor" scope="RUNTIME" />
+-    <orderEntry type="module" module-name="intellij.android.plugin.descriptor" scope="RUNTIME" />
++<!--    <orderEntry type="module" module-name="intellij.android.design-plugin.descriptor" scope="RUNTIME" />-->
++<!--    <orderEntry type="module" module-name="intellij.android.plugin.descriptor" scope="RUNTIME" />-->
+     <orderEntry type="module-library" scope="TEST">
+       <library name="precompiled-android-annotations" type="repository">
+         <properties include-transitive-deps="false" maven-id="org.jetbrains.intellij.deps.android.tools.base:studio.android.sdktools.android-annotations:231.0.26.0">
+diff --git a/gradle-dsl/intellij.android.gradle.dsl.testutils.iml b/gradle-dsl/intellij.android.gradle.dsl.testutils.iml
+index 9a5d771b266..2fc24881b86 100644
+--- a/gradle-dsl/intellij.android.gradle.dsl.testutils.iml
++++ b/gradle-dsl/intellij.android.gradle.dsl.testutils.iml
+@@ -16,8 +16,8 @@
+     <orderEntry type="module" module-name="android.sdktools.testutils" scope="TEST" />
+     <orderEntry type="module" module-name="intellij.android.adt.testutils" scope="TEST" />
+     <orderEntry type="library" scope="TEST" name="JUnit4" level="project" />
+-    <orderEntry type="module" module-name="intellij.android.gradle.dsl.kotlin" scope="RUNTIME" />
+-    <orderEntry type="module" module-name="intellij.android.gradle.dsl.toml" scope="RUNTIME" />
++<!--    <orderEntry type="module" module-name="intellij.android.gradle.dsl.kotlin" scope="RUNTIME" />-->
++<!--    <orderEntry type="module" module-name="intellij.android.gradle.dsl.toml" scope="RUNTIME" />-->
+     <orderEntry type="module" module-name="android.sdktools.flags" />
+     <orderEntry type="library" name="kotlin-stdlib" level="project" />
+     <orderEntry type="library" scope="TEST" name="Guava" level="project" />
+diff --git a/project-system-gradle/intellij.android.projectSystem.gradle.tests.iml b/project-system-gradle/intellij.android.projectSystem.gradle.tests.iml
+index ff472e4e680..cdfe49ba1fd 100644
+--- a/project-system-gradle/intellij.android.projectSystem.gradle.tests.iml
++++ b/project-system-gradle/intellij.android.projectSystem.gradle.tests.iml
+@@ -21,7 +21,7 @@
+     <orderEntry type="library" scope="TEST" name="truth" level="project" />
+     <orderEntry type="module" module-name="intellij.android.adt.testutils" scope="TEST" />
+     <orderEntry type="module" module-name="intellij.android.gradle.dsl" scope="TEST" />
+-    <orderEntry type="module" module-name="intellij.android.gradle.dsl.kotlin" scope="RUNTIME" />
++<!--    <orderEntry type="module" module-name="intellij.android.gradle.dsl.kotlin" scope="RUNTIME" />-->
+     <orderEntry type="library" scope="TEST" name="studio-analytics-proto" level="project" />
+     <orderEntry type="library" scope="TEST" name="studio-proto" level="project" />
+     <orderEntry type="module" module-name="intellij.android.deploy" scope="TEST" />
+@@ -42,8 +42,8 @@
+     <orderEntry type="module" module-name="intellij.android.build-attribution" scope="TEST" />
+     <orderEntry type="module" module-name="intellij.android.execution.common" scope="TEST" />
+     <orderEntry type="module" module-name="intellij.android.render-resources" scope="TEST" />
+-    <orderEntry type="module" module-name="intellij.android.kotlin.idea" scope="RUNTIME" />
+-    <orderEntry type="module" module-name="intellij.android.kotlin.extensions" scope="RUNTIME" />
++<!--    <orderEntry type="module" module-name="intellij.android.kotlin.idea" scope="RUNTIME" />-->
++<!--    <orderEntry type="module" module-name="intellij.android.kotlin.extensions" scope="RUNTIME" />-->
+     <orderEntry type="module" module-name="intellij.gradle.tests" scope="TEST" />
+     <orderEntry type="library" scope="TEST" name="Guava" level="project" />
+     <orderEntry type="library" scope="TEST" name="protobuf" level="project" />
+-- 
+2.34.1
+

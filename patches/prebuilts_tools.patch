@@ -1,0 +1,62 @@
+From f22c3eb44a6018f9a70c08bf85d23e8ca02558ec Mon Sep 17 00:00:00 2001
+From: Nikita Proskurnikov <nikita.proskurnikov@ejetbrains.com>
+Date: Mon, 18 Mar 2024 17:15:15 +0100
+Subject: [PATCH] update BUILD file
+
+---
+ common/m2/BUILD | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/common/m2/BUILD b/common/m2/BUILD
+index ec779cd98..faa192f38 100644
+--- a/common/m2/BUILD
++++ b/common/m2/BUILD
+@@ -454,6 +454,22 @@ studio_data(
+ # might not match the version of the kotlin-stdlib we want on the classpath.
+ jvm_import(
+     name = "kotlin-compiler",
++    jars = [
++        # This list can be computed by querying the deps of
++        # @maven//:org.jetbrains.kotlin.kotlin-compiler_<VERSION>.
++        "repository/org/jetbrains/updated_file_versions/newAnnotations/annotations-13.0.jar",
++        "repository/org/jetbrains/updated_file_versions/newtrove4j/trove4j.jar",
++        "repository/org/jetbrains/updated_file_versions/kotlin-compiler/1.9.22/kotlin-compiler-1.9.22.jar",
++        "repository/org/jetbrains/updated_file_versions/kotlin-reflect/1.9.22/kotlin-reflect-1.9.22.jar",
++        "repository/org/jetbrains/updated_file_versions/kotlin-script-runtime/1.9.22/kotlin-script-runtime-1.9.22.jar",
++        "repository/org/jetbrains/updated_file_versions/kotlin-stdlib-common/1.9.22/kotlin-stdlib-common-1.9.22.jar",
++        "repository/org/jetbrains/updated_file_versions/kotlin-stdlib/1.9.22/kotlin-stdlib-1.9.22.jar",
++    ],
++    visibility = ["//visibility:public"],
++)
++
++jvm_import(
++    name = "kotlin-compiler2",
+     jars = [
+         # This list can be computed by querying the deps of
+         # @maven//:org.jetbrains.kotlin.kotlin-compiler_<VERSION>.
+@@ -470,12 +486,22 @@ jvm_import(
+ 
+ jvm_import(
+     name = "jvm-abi-gen-plugin",
++    jars = [
++        "repository/org/jetbrains/updated_file_versions/jvm-abi-gen/1.9.22/jvm-abi-gen.jar",
++    ],
++    visibility = ["//visibility:public"],
++)
++
++jvm_import(
++    name = "jvm-abi-gen-plugin2",
+     jars = [
+         "repository/org/jetbrains/kotlin/jvm-abi-gen/1.8.21/jvm-abi-gen-1.8.21.jar",
+     ],
+     visibility = ["//visibility:public"],
+ )
+ 
++
++
+ jvm_import(
+     name = "compose-compiler-hosted",
+     jars = [
+-- 
+2.34.1
+

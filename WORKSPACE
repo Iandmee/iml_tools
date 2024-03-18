@@ -99,3 +99,14 @@ new_local_repository(
     build_file = "tools/base/bazel/maven/BUILD.maven",
     path = "prebuilts/tools/common/m2",
 )
+
+local_repository(
+    name = "cov",
+    path = "tools/base/bazel/coverage",
+)
+
+new_local_repository(
+    name = "jar_jar",
+    build_file = "tools/base/bazel/jarjar/jarjar.BUILD",
+    path = "external/jarjar",
+)

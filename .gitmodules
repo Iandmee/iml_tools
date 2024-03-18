@@ -31,3 +31,6 @@
 [submodule "tools/analytics-library"]
 	path = tools/analytics-library
 	url = https://android.googlesource.com/platform/tools/analytics-library
+[submodule "updated_file_versions_for_prebuilts_tools"]
+	path = updated_file_versions_for_prebuilts_tools
+	url = https://github.com/Iandmee/updated_file_versions_for_prebuilts_tools.git

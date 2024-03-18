@@ -13,3 +13,21 @@
 [submodule "intellij-community"]
 	path = intellij-community
 	url = https://github.com/Iandmee/intellij-community.git
+[submodule "external/freetype"]
+	path = external/freetype
+	url = https://android.googlesource.com/platform/external/freetype
+[submodule "external/jarjar"]
+	path = external/jarjar
+	url = https://android.googlesource.com/platform/external/jarjar
+[submodule "external/libpng"]
+	path = external/libpng
+	url = https://android.googlesource.com/platform/external/libpng
+[submodule "external/skia"]
+	path = external/skia
+	url = https://android.googlesource.com/platform/external/skia
+[submodule "external/zlib"]
+	path = external/zlib
+	url = https://android.googlesource.com/platform/external/zlib
+[submodule "tools/analytics-library"]
+	path = tools/analytics-library
+	url = https://android.googlesource.com/platform/tools/analytics-library
